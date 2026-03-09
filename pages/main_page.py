@@ -42,7 +42,7 @@ class MainPage(BasePage):
     )
         constructor_zone = self.find_element(MainPageLocators.CONSTRUCTOR_ZONE)
 
-        self.driver.execute_script("""
+        self.execute_script("""
             arguments[0].dispatchEvent(new DragEvent('dragstart', {bubbles: true}));
             arguments[1].dispatchEvent(new DragEvent('drop', {bubbles: true}));
         """, ingredient, constructor_zone)

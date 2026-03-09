@@ -62,3 +62,8 @@ class BasePage:
     def get_current_url(self):
         """Получить текущий URL"""
         return self.driver.current_url
+    
+    @allure.step("Выполнить JavaScript код")
+    def execute_script(self, script, *args):
+        """Выполнить JavaScript скрипт"""
+        return self.driver.execute_script(script, *args)

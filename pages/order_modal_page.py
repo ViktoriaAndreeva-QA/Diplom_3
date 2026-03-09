@@ -16,8 +16,8 @@ class OrderModalPage(BasePage):
     def wait_for_real_order_number(self):
         """Ждёт, пока номер заказа перестанет быть 9999"""
         
-        def order_number_changed(driver):
-            element = driver.find_element(*OrderModalLocators.ORDER_NUMBER)
+        def order_number_changed(_):
+            element = self.find_element(OrderModalLocators.ORDER_NUMBER)
             number_text = element.text
             # Ждём, пока номер не станет цифрой и не равен 9999
             return number_text.isdigit() and number_text != "9999"
@@ -35,4 +35,4 @@ class OrderModalPage(BasePage):
         self.wait.until(EC.visibility_of_element_located(OrderModalLocators.MODAL_WINDOW))
 
         close_button = self.wait.until(EC.element_to_be_clickable(OrderModalLocators.CLOSE_BUTTON))
-        self.driver.execute_script("arguments[0].click();", close_button)
+        self.execute_script("arguments[0].click();", close_button)

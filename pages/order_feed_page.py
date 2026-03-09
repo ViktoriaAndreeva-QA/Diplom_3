@@ -14,14 +14,14 @@ class OrderFeedPage(BasePage):
     @allure.step('Получить значение счётчика "Выполнено за всё время"')
     def get_total_orders_count(self):
         """Возвращает число из счётчика 'Выполнено за всё время'"""
-        self.wait.until(lambda driver: driver.find_element(*OrderFeedLocators.TOTAL_ORDERS_COUNTER).text.strip().isdigit())
+        self.wait.until(lambda _: self.find_element(OrderFeedLocators.TOTAL_ORDERS_COUNTER).text.strip().isdigit())
         text = self.get_text(OrderFeedLocators.TOTAL_ORDERS_COUNTER)
         return int(text)
     
     @allure.step('Получить значение счётчика "Выполнено за сегодня"')
     def get_today_orders_count(self):
         """Возвращает число из счётчика 'Выполнено за сегодня'"""
-        self.wait.until(lambda driver: driver.find_element(*OrderFeedLocators.TODAY_ORDERS_COUNTER).text.strip().isdigit())
+        self.wait.until(lambda _: self.find_element(OrderFeedLocators.TODAY_ORDERS_COUNTER).text.strip().isdigit())
         text = self.get_text(OrderFeedLocators.TODAY_ORDERS_COUNTER)
         return int(text)
     
@@ -37,7 +37,7 @@ class OrderFeedPage(BasePage):
     @allure.step('Получить номера заказов в работе')
     def get_orders_in_progress(self):
         """Возвращает список номеров заказов в работе"""
-        self.wait.until(lambda driver: driver.find_element(*OrderFeedLocators.ORDERS_IN_PROGRESS).text.strip().isdigit())
+        self.wait.until(lambda _: self.find_element(OrderFeedLocators.ORDERS_IN_PROGRESS).text.strip().isdigit())
         order_elements = self.find_elements(OrderFeedLocators.ORDERS_IN_PROGRESS)
         return [element.text for element in order_elements]
     

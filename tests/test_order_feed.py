@@ -8,7 +8,7 @@ class TestOrderFeed:
     """Тесты для раздела Лента Заказов"""
 
     @allure.title("После создания нового заказа счётчик «Выполнено за всё время» увеличивается")
-    def test_counter_of_total_increases_after_create_new_order_success(self, authorized_user, order_feed_page, order_modal_page):
+    def test_create_new_order_increases_total_orders_counter_success(self, authorized_user, order_feed_page, order_modal_page):
         with allure.step("Перейти в ленту заказов и запомнить текущее значение счётчика"):
             authorized_user.click_order_feed()
             initial_total = order_feed_page.get_total_orders_count()
@@ -33,7 +33,7 @@ class TestOrderFeed:
             assert new_total > initial_total
 
     @allure.title("После создания нового заказа счётчик «Выполнено за сегодня» увеличивается")
-    def test_counter_of_today_increases_after_create_new_order_success(self, authorized_user, order_feed_page, order_modal_page):
+    def test_create_new_order_increases_today_orders_counter_success(self, authorized_user, order_feed_page, order_modal_page):
         with allure.step("Перейти в ленту заказов и запомнить текущее значение счётчика за сегодня"):
             authorized_user.click_order_feed()
             initial_today = order_feed_page.get_today_orders_count()
@@ -57,7 +57,7 @@ class TestOrderFeed:
             assert new_today > initial_today
 
     @allure.title("После создания нового заказа его номер появляется в разделе «В работе»")
-    def test_order_number_appears_in_progress_section_after_create_order_success(self, authorized_user, order_feed_page, order_modal_page):
+    def test_new_order_number_appears_in_progress_section_success(self, authorized_user, order_feed_page, order_modal_page):
         with allure.step("Создать новый заказ"):
             authorized_user.click_constructor()
             authorized_user.add_ingredient_to_order(MainPageLocators.BUN_INGREDIENT)
